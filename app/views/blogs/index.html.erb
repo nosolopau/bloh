@@ -2,12 +2,11 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+<%= link_to t('.new', :default => t("helpers.links.new")),  new_blog_path,  :class => 'btn btn-primary' %>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -15,9 +14,7 @@
   <tbody>
     <% @blogs.each do |blog| %>
       <tr>
-        <td><%= link_to blog.id, blog_path(blog) %></td>
-        <td><%= blog.title %></td>
-        <td><%= blog.user_id %></td>
+        <td><%= link_to blog.title, blog %></td>
         <td><%=l blog.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -33,6 +30,4 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_blog_path,
-            :class => 'btn btn-primary' %>
+
